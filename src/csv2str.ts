@@ -21,7 +21,7 @@ async function readCSVFile() {
       });
       for (const item of results) {
         for (const key of Object.keys(item)) {
-          if (key == 'key') continue;
+          if (key == 'key' || !item[key] || item[key]=='undefined') continue;
           setObjectValue(map[key], item['key'].split('.'), item[key]);
         }
       }
@@ -44,7 +44,7 @@ function setObjectValue(obj, keys, value) {
       }
       o = o[keys[i]];
     }
-    o[keys[i]] = value;
+    if (!value || value !== 'undefined') o[keys[i]] = value;
   } catch(err) {
     console.error(err, obj, keys, value);
   }
