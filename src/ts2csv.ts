@@ -51,6 +51,6 @@ function getValue(obj, keys) {
     for (const key of keys) {
       o = o[key];
     }
-    return `"${String(o).replace(/\n/g, '\\n')}"`;
+    return `"${String(o).replace(/\n/g, '\\n').replace(/\"/g, '\'')}"`;
   }
 }
